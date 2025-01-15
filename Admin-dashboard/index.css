@@ -7,7 +7,6 @@ html {
 .container {
   text-align: center;
   height: 100%;
-  
   box-sizing: border-box;
 }
 
@@ -20,7 +19,7 @@ html {
 }
 
 .header {
-  background-color: #006157;
+  background-color: white;
   grid-column: 2 / 4;
   grid-row: 1 / 2;
 }
@@ -31,24 +30,24 @@ html {
   grid-row: 1 / 5;
 }
 
-.sidebar img{
+img{
   width: 50px;
 }
 
 .your-projects {
-  background-color: dimgray;
+  background-color: #e2e8f0;
   grid-row: 2 / 5;
 }
 
-.your-projects p {
+p {
   font-size: 18px;
   font-family: sans-serif;
-  color: white;
+  color: black;
   text-align: left;
 }
 
 .right-sidebar {
-    background-color: #D8D8D8;
+    background-color: #e2e8f0;
     grid-row: 2 / 5;
 }
 
@@ -76,4 +75,16 @@ html {
   gap: 10px;
   grid-template-rows: 1fr 1fr;
   height: 90%;
+}
+
+.search-bar{
+  height: 40px;
+  width: 400px;
+  border-radius: 15px;
+  background-color: #e2e8f0;
+}
+
+.header-container{
+  display: grid;
+  grid-template-columns: 150px 700px 100px 100px 5px;
 }
