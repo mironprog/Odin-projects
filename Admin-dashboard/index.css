@@ -1,0 +1,52 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  height: 100%;
+  
+  box-sizing: border-box;
+}
+
+.container div {
+  padding: 15px;
+  font-size: 32px;
+  font-family: Helvetica;
+  font-weight: bold;
+  color: white;
+}
+
+.header {
+  background-color: #006157;
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+}
+
+.sidebar {
+  background-color: #005B94;
+  grid-row: 1 / 4;
+}
+
+.your-projects {
+  background-color: #7E1DC3;
+}
+
+.your-projects p {
+  font-size: 18px;
+  font-family: sans-serif;
+  color: white;
+  text-align: left;
+}
+
+.right-sidebar {
+    background-color: red;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 4fr;
+}
