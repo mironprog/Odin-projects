@@ -1,0 +1,9 @@
+[submodule "Sign-up-form"]
+	path = Sign-up-form
+	url = https://github.com/mironprog/Sign-up-form
+[submodule "rock-paper-scissors"]
+	path = rock-paper-scissors
+	url = https://github.com/mironprog/rock-paper-scissors
+[submodule "Odin-landing"]
+	path = Odin-landing
+	url = https://github.com/mironprog/Odin-landing
