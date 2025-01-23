@@ -17,6 +17,8 @@ function addBookToLibrary() {
   const aBook = new Book(title, writer, pages, read);
   myLibrary.push(aBook);
 }
-
-addBookToLibrary();
 console.log(myLibrary);
+
+function popUpForm(){
+  console.log("valami")
+}

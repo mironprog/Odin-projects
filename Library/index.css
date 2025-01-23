@@ -2,8 +2,23 @@
     padding-top: 50px;
     display: flex;
     justify-content: center;
+    background-color: aqua;
+    padding-bottom: 50px;
 }
 
+.container{
+  background-color: black;
+  display:grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 90%;
+}
+
+.card{
+  background-color: #006157;
+  border-radius: 15px;
+}
 
 /* szedtem a netről ezt a kirány gombot*/
 .button-89 {
