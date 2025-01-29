@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
                   <label for="read">Have you read it?</label>
                   <input type="checkbox" id="read" required><br><br>
 
-                  <button type="submit" class="btn">Regisztráció</button>
+                  <button type="submit" class="btn">Submit</button>
               </form>
           </div>
       `;
