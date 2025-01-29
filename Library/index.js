@@ -47,10 +47,13 @@ document.addEventListener("DOMContentLoaded", function() {
                   <label for="pages">How many pages:</label>
                   <input type="number" id="pages" required><br><br>
 
-                  <label for="read">Have you read it?</label>
-                  <input type="checkbox" id="read" required><br><br>
+                  <label for="btnToggle">Have you read it?</label><br><br>
+                  <label class="toggle">
+                    <input type="checkbox" id="btnToggle" name="btnToggle" />
+                    <span class="slider"></span>
+                  </label><br><br>
 
-                  <button type="submit" class="btn">Submit</button>
+                  <button type="submit" class="btn">Add</button>
               </form>
           </div>
       `;
