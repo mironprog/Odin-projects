@@ -7,18 +7,20 @@ function Book(title, writer, pages, read) {
   this.read = read;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(event) {
+  event.preventDefault();
   // take params, create a book then store it in the array
-  const title = prompt("Please enter the title of the book:");
-  const writer = prompt("Please enter the writer of the book:");
-  const pages = prompt("Please enter the pages of the book:");
-  const read = prompt("Have you read the book?");
+  const title = document.getElementById('title').value;
+  const writer = document.getElementById('author').value;
+  const pages = document.getElementById('pages').value;
+  const read = document.getElementById("btnToggle").checked;
 
+  console.log(title)
   const aBook = new Book(title, writer, pages, read);
   myLibrary.push(aBook);
-}
 
-console.log(myLibrary);
+  document.getElementById("registrationModal").remove();
+}
 
 document.addEventListener("DOMContentLoaded", function() {
   const openModalBtn = document.getElementById("openModalBtn");
@@ -53,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <span class="slider"></span>
                   </label><br><br>
 
-                  <button type="submit" class="button-62">Add</button>
+                  <button type="submit" id="submitBtn" class="button-62">Add</button>
               </form>
           </div>
       `;
@@ -72,5 +74,10 @@ document.addEventListener("DOMContentLoaded", function() {
               modal.remove();
           }
       });
+
+      document.getElementById("submitBtn").addEventListener("click", addBookToLibrary);
   });
 });
+
+
+
