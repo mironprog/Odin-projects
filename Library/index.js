@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <span class="slider"></span>
                   </label><br><br>
 
-                  <button type="submit" class="btn">Add</button>
+                  <button type="submit" class="button-62">Add</button>
               </form>
           </div>
       `;
