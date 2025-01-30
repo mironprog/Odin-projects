@@ -20,6 +20,29 @@ function addBookToLibrary(event) {
   myLibrary.push(aBook);
 
   document.getElementById("registrationModal").remove();
+  showBookInfo(aBook);
+}
+
+function showBookInfo(book) {
+  // Létrehozunk egy új értesítő ablakot
+  const bookInfo = document.createElement("div");
+  bookInfo.id = "bookInfo";
+  bookInfo.classList.add("card");
+
+  bookInfo.innerHTML = `
+      <h3>${book.title}</h3>
+      <p><strong>Author:</strong> ${book.writer}</p>
+      <p><strong>Pages:</strong> ${book.pages}</p>
+      <p><strong>Read:</strong> ${book.read ? "Yes" : "No"}</p>
+      <button class="close-info" id="closeInfoBtn">Remove</button>
+  `;
+
+  document.getElementById("card-container").appendChild(bookInfo);
+
+  // Bezárás gomb működése
+  document.getElementById("closeInfoBtn").addEventListener("click", function () {
+    bookInfo.remove();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
