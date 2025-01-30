@@ -24,7 +24,6 @@ function addBookToLibrary(event) {
 }
 
 function showBookInfo(book) {
-  // Létrehozunk egy új értesítő ablakot
   const bookInfo = document.createElement("div");
   bookInfo.id = "bookInfo";
   bookInfo.classList.add("card");
@@ -39,7 +38,6 @@ function showBookInfo(book) {
 
   document.getElementById("card-container").appendChild(bookInfo);
 
-  // Bezárás gomb működése
   document.getElementById("closeInfoBtn").addEventListener("click", function () {
     bookInfo.remove();
   });
@@ -49,15 +47,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const openModalBtn = document.getElementById("openModalBtn");
 
   openModalBtn.addEventListener("click", function() {
-      // Ellenőrizzük, hogy már létezik-e a modal
       if (document.getElementById("registrationModal")) return;
 
-      // Modal létrehozása
       const modal = document.createElement("div");
       modal.id = "registrationModal";
       modal.classList.add("modal");
 
-      // Modal tartalom
       modal.innerHTML = `
           <div class="modal-content">
               <button class="close-btn" id="closeModalBtn">X</button>
@@ -83,15 +78,12 @@ document.addEventListener("DOMContentLoaded", function() {
           </div>
       `;
 
-      // Modal hozzáadása az oldalhoz
       document.body.appendChild(modal);
 
-      // Bezárás esemény hozzáadása
       document.getElementById("closeModalBtn").addEventListener("click", function() {
           modal.remove();
       });
 
-      // Külső kattintásra bezárás
       window.addEventListener("click", function(event) {
           if (event.target === modal) {
               modal.remove();
