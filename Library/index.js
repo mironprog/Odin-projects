@@ -15,31 +15,37 @@ function addBookToLibrary(event) {
   const pages = document.getElementById('pages').value;
   const read = document.getElementById("btnToggle").checked;
 
-  console.log(title)
   const aBook = new Book(title, writer, pages, read);
   myLibrary.push(aBook);
 
   document.getElementById("registrationModal").remove();
-  showBookInfo(aBook);
+  showBookInfo(myLibrary);
 } 
 
-function showBookInfo(book) {
-  const bookInfo = document.createElement("div");
-  bookInfo.id = "bookInfo";
-  bookInfo.classList.add("card");
+function showBookInfo(myLibrary) {
+  const cardContainer = document.getElementById("card-container");
 
-  bookInfo.innerHTML = `
+  cardContainer.innerHTML = "";
+
+  myLibrary.forEach((book, index) => {
+    const bookInfo = document.createElement("div");
+    bookInfo.classList.add("card");
+
+    bookInfo.innerHTML = `
       <h3>${book.title}</h3>
       <p><strong>Author:</strong> ${book.writer}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
       <p><strong>Read:</strong> ${book.read ? "Yes" : "No"}</p>
-      <button class="close-info" id="closeInfoBtn">Remove</button>
-  `;
+      <button class="close-info" data-index="${index}">Remove</button>
+    `;
 
-  document.getElementById("card-container").appendChild(bookInfo);
+    cardContainer.appendChild(bookInfo);
 
-  document.getElementById("closeInfoBtn").addEventListener("click", function () {
-    bookInfo.remove();
+    
+    bookInfo.querySelector(".close-info").addEventListener("click", function () {
+      myLibrary.splice(index, 1); 
+      showBookInfo(myLibrary); 
+    });
   });
 }
 
