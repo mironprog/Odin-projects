@@ -1,4 +1,13 @@
-const myLibrary = [];
+const myLibrary = [
+  new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, true),
+  new Book("1984", "George Orwell", 328, false),
+  new Book("To Kill a Mockingbird", "Harper Lee", 281, true)
+];
+
+// Display the default books when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+  showBookInfo(myLibrary);
+});
 
 function Book(title, writer, pages, read) {
   this.title = title;
@@ -35,11 +44,18 @@ function showBookInfo(myLibrary) {
       <h3>${book.title}</h3>
       <p><strong>Author:</strong> ${book.writer}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
-      <p><strong>Read:</strong> ${book.read ? "Yes" : "No"}</p>
+      <p><strong>Read:</strong> <a id="readStatus">${book.read ? "Yes" : "No"}</a></p>
+      <button class="toggle-read" data-index="${index}">Toggle Read</button>
       <button class="close-info" data-index="${index}">Remove</button>
     `;
 
     cardContainer.appendChild(bookInfo);
+
+    bookInfo.querySelector(".toggle-read").addEventListener("click", function () {
+      myLibrary[index].read = !myLibrary[index].read;
+      const readStatus = bookInfo.querySelector("#readStatus");
+      readStatus.textContent = myLibrary[index].read ? "Yes" : "No"; 
+    });
 
     
     bookInfo.querySelector(".close-info").addEventListener("click", function () {
