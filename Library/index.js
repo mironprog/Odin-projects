@@ -21,7 +21,7 @@ function addBookToLibrary(event) {
 
   document.getElementById("registrationModal").remove();
   showBookInfo(aBook);
-}
+} 
 
 function showBookInfo(book) {
   const bookInfo = document.createElement("div");
