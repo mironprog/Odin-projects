@@ -1,7 +1,7 @@
 const myLibrary = [
-  new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, true),
-  new Book("1984", "George Orwell", 328, false),
-  new Book("To Kill a Mockingbird", "Harper Lee", 281, true)
+  new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, false),
+  new Book("1984", "George Orwell", 328, true),
+  new Book("Rendezvous with Rama", "Arthur C. Clarke", 303, true)
 ];
 
 // Display the default books when the page loads
