@@ -7,11 +7,10 @@ const Gameboard = {
 };
 
 let game = true;
-function putX(gameboard){
-    var row = prompt("Which row?");
-    var column = prompt("Which column?");
-    gameboard[row][column] = "X";
-    return gameboard;
+function putX(tile){
+    if (tile.innerHTML === "") {
+        tile.innerHTML = "X"; // "X" helyezése a mezőbe
+    }
 }
 
 function putO(gameboard){
@@ -77,3 +76,21 @@ while(game){
     displayBoard();
     checkWin(Gameboard.gameboard);   
 }
+
+/*
+window.addEventListener('DOMContentLoaded', () => {
+    const tiles = Array.from(document.querySelectorAll('.tile'));
+    const palyerDisplay = document.querySelectorAll('.display-player');
+    const resetButton = document.querySelectorAll('#reset');
+    const announcer = document.querySelectorAll('.announcer');
+
+    let currentPlayer = 'X';
+    let game = true;
+
+    const PLAYERX_WON = 'PLAYERX_WON';
+    const PLAYERO_WON = 'PLAYERO_WON';
+    const TIE = 'TIE';
+
+    resetButton.addEventListener('click', resetButton);
+});
+*/
