@@ -1,96 +1,116 @@
-const Gameboard = {
-    gameboard: [
-        [null, null, null],
-        [null, null, null],
-        [null, null, null]
-    ]
-};
-
-let game = true;
-function putX(tile){
-    if (tile.innerHTML === "") {
-        tile.innerHTML = "X"; // "X" helyezése a mezőbe
-    }
-}
-
-function putO(gameboard){
-    const board = gameboard;
-    const emptyCells = [];
-    for (let row = 0; row < board.length; row++) {
-        for (let col = 0; col < board[row].length; col++) {
-            if (board[row][col] === null) {
-                emptyCells.push({ row, col });
-            }
-        }
-    }
-
-    if (emptyCells.length > 0) {
-        const randomIndex = Math.floor(Math.random() * emptyCells.length); 
-        const { row, col } = emptyCells[randomIndex]; 
-        board[row][col] = "O";  
-        return true; 
-    }
-
-    return false; 
-}
-
-function displayBoard(){
-    console.log(Gameboard.gameboard);
-}
-
-const checkWin = (board) => {
-    const size = board.length;  
-
-   
-    for (let row = 0; row < size; row++) {
-        if (board[row][0] !== null && board[row].every(cell => cell === board[row][0])) {
-            game = false
-            return board[row][0];
-        }
-    }
-
-    for (let col = 0; col < size; col++) {
-        if (board[0][col] !== null && board.every(row => row[col] === board[0][col])) {
-            game = false;
-            return board[0][col];
-        }
-    }
-
-    if (board[0][0] !== null && board.every((row, index) => row[index] === board[0][0])) {
-        game = false;
-        return board[0][0];
-    }
-
-    if (board[0][size - 1] !== null && board.every((row, index) => row[size - 1 - index] === board[0][size - 1])) {
-        game = false;
-        return board[0][size - 1];
-    }
-
-    return null; 
-};
-
-while(game){
-    putX(Gameboard.gameboard);
-    checkWin(Gameboard.gameboard); 
-    putO(Gameboard.gameboard);
-    displayBoard();
-    checkWin(Gameboard.gameboard);   
-}
-
-/*
 window.addEventListener('DOMContentLoaded', () => {
     const tiles = Array.from(document.querySelectorAll('.tile'));
-    const palyerDisplay = document.querySelectorAll('.display-player');
-    const resetButton = document.querySelectorAll('#reset');
-    const announcer = document.querySelectorAll('.announcer');
+    const playerDisplay = document.querySelector('.display-player');
+    const resetButton = document.querySelector('#reset');
+    const announcer = document.querySelector('.announcer');
 
+    let board = ['', '', '', '', '', '', '', '', ''];
     let currentPlayer = 'X';
-    let game = true;
+    let isGameActive = true;
 
     const PLAYERX_WON = 'PLAYERX_WON';
     const PLAYERO_WON = 'PLAYERO_WON';
     const TIE = 'TIE';
 
-    resetButton.addEventListener('click', resetButton);
+    const winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    function handleResultValidation() {
+        let roundWon = false;
+        for (let i = 0; i <= 7; i++) {
+            const winCondition = winningConditions[i];
+            const a = board[winCondition[0]];
+            const b = board[winCondition[1]];
+            const c = board[winCondition[2]];
+            if (a === '' || b === '' || c === '') {
+                continue;
+            }
+            if (a === b && b === c) {
+                roundWon = true;
+                break;
+            }
+        }
+
+    if (roundWon) {
+            announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
+            isGameActive = false;
+            return;
+        }
+
+    if (!board.includes(''))
+        announce(TIE);
+    }
+
+    const announce = (type) => {
+        switch(type){
+            case PLAYERO_WON:
+                announcer.innerHTML = 'Player <span class="playerO">O</span> Won';
+                break;
+            case PLAYERX_WON:
+                announcer.innerHTML = 'Player <span class="playerX">X</span> Won';
+                break;
+            case TIE:
+                announcer.innerText = 'Tie';
+        }
+        announcer.classList.remove('hide');
+    };
+
+    const isValidAction = (tile) => {
+        if (tile.innerText === 'X' || tile.innerText === 'O'){
+            return false;
+        }
+
+        return true;
+    };
+
+    const updateBoard =  (index) => {
+        board[index] = currentPlayer;
+    }
+
+    const changePlayer = () => {
+        playerDisplay.classList.remove(`player${currentPlayer}`);
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        playerDisplay.innerText = currentPlayer;
+        playerDisplay.classList.add(`player${currentPlayer}`);
+    }
+
+    const userAction = (tile, index) => {
+        if(isValidAction(tile) && isGameActive) {
+            tile.innerText = currentPlayer;
+            tile.classList.add(`player${currentPlayer}`);
+            updateBoard(index);
+            handleResultValidation();
+            changePlayer();
+        }
+    }
+    
+    const resetBoard = () => {
+        board = ['', '', '', '', '', '', '', '', ''];
+        isGameActive = true;
+        announcer.classList.add('hide');
+
+        if (currentPlayer === 'O') {
+            changePlayer();
+        }
+
+        tiles.forEach(tile => {
+            tile.innerText = '';
+            tile.classList.remove('playerX');
+            tile.classList.remove('playerO');
+        });
+    }
+
+    tiles.forEach( (tile, index) => {
+        tile.addEventListener('click', () => userAction(tile, index));
+    });
+
+    resetButton.addEventListener('click', resetBoard);
 });
-*/
